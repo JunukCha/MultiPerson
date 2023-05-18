@@ -5,7 +5,7 @@ import argparse
 from lib.utils.file_utils import update_config
 
 def change_key_name_neek_to_neck(cfg):
-    weight_file = cfg.YOLO.weight_file
+    weight_file = cfg.YOLO.weight_old_file
     pretrained_dict = torch.load(weight_file)
     new_state_dict = {}
     for key, value in pretrained_dict.items():
