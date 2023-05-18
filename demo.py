@@ -8,8 +8,9 @@ import cv2
 import numpy as np
 import argparse
 
-from YOLOv4.tool.utils import load_class_names, split_boxes_cv2
+from YOLOv4.tool.utils import load_class_names
 from YOLOv4.tool.torch_utils import do_detect
+from lib.utils.img_utils import split_boxes_cv2
 from lib.utils.model_utils import create_all_network
 from lib.utils.input_utils import (
     get_pose_estimator_input,

@@ -1,7 +1,6 @@
+import os.path as osp
 import numpy as np
 import cv2
-import random
-import math
 
 from torchvision import transforms
 
@@ -23,6 +22,44 @@ def convert_crop_cam_to_orig_img(cam, bbox, img_width, img_height):
     ty = ((cy - hh) / hh / sy) + cam[:,2]
     orig_cam = np.stack([sx, sy, tx, ty]).T
     return orig_cam
+
+def split_boxes_cv2(img, boxes, save_folder, class_names=None, frame_idx=0):
+    img = np.copy(img)
+
+    width = img.shape[1]
+    height = img.shape[0]
+    
+    n_person = 0
+    refined_boxes = []
+    trans_invs = []
+    cropped_images = []
+    for i in range(len(boxes)):
+        box = boxes[i]
+        x1 = int(box[0] * width)
+        y1 = int(box[1] * height)
+        x2 = int(box[2] * width)
+        y2 = int(box[3] * height)
+
+        if len(box) >= 7 and class_names:
+            cls_conf = box[5]
+            cls_id = box[6]
+            print('%s: %f' % (class_names[cls_id], cls_conf))
+            if class_names[cls_id] == "person":
+                center = (x1+x2)/2, (y1+y2)/2
+                crop_width = x2-x1
+                crop_height = y2-y1
+                crop_size = max(crop_width, crop_height)*1.2
+
+                trans = gen_trans_from_patch_cv(center[0], center[1], crop_size, crop_size, 256, 256, 1, 0, inv=False)
+                trans_inv = gen_trans_from_patch_cv(center[0], center[1], crop_size, crop_size, 256, 256, 1, 0, inv=True)
+                img_patch = cv2.warpAffine(img, trans, (256, 256), flags=cv2.INTER_LINEAR)
+                cv2.imwrite(osp.join(save_folder, f"frame{frame_idx}_image{n_person}.jpg"), 
+                            img_patch)
+                cropped_images.append(img_patch)
+                n_person += 1
+                refined_boxes.append([center[0], center[1], crop_size, crop_size])
+                trans_invs.append(trans_inv)
+    return cropped_images, refined_boxes, trans_invs
 
 def gen_trans_from_patch_cv(c_x, c_y, src_width, src_height, dst_width, dst_height, scale, rot, inv=False):
     # augment size with scale
