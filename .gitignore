@@ -1,0 +1,7 @@
+output/
+data/
+.vscode
+
+*.pyc
+__pycache__
+YOLOv4

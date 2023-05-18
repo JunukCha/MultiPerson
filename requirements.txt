@@ -1,0 +1,10 @@
+opencv-python
+tqdm
+timm
+einops
+matplotlib
+easydict
+scipy
+chumpy
+trimesh
+pyrender

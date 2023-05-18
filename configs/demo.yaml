@@ -1,0 +1,48 @@
+SAVE_FOLDER:
+  split_images_folder: output/split_images
+  pose_results_folder: output/pose_results
+  mesh_results_folder: output/mesh_results
+
+YOLO:
+  target_height: 576
+  target_width: 768
+  n_classes: 80
+  weight_file: "YOLOv4/weight/yolov4.pth"
+  namesfile: "YOLOv4/data/coco.names" # "YOLOv4/data/voc.names"
+
+PoseEstimator:
+  weight_file: "data/checkpoints/pose_estimator.pth"
+  joint_info_file: "data/base/joint_info.pkl"
+  to_122_file: "data/base/32_to_122.npy"
+  FLAGS:
+    fov_degrees: 55
+    stride: 32
+    proc_side: 256
+    final_transposed_conv: 1
+    centered_stride: True
+    box_size: 2200
+
+InverseKinematic:
+  cfg: "configs/256x192_adam_lr1e-3-res34_smpl_24_3d_base_2x_mix.yaml"
+  weight_file: "data/checkpoints/inverse_kinematics.pth"
+  IMG_MEAN: [-0.406, -0.457, -0.480]
+  IMG_STD: [0.225, 0.224, 0.229]
+
+FeatureExtractor:
+  weight_file: "data/checkpoints/model_checkpoint.pt"
+
+SMPL:
+  model_path: "data/smpl/basicModel_neutral_lbs_10_207_0_v1.0.0.pkl"
+  smpl_mean_params: "data/smpl/smpl_mean_params.npz"
+
+
+SmplTR:
+  weight_file: "data/checkpoints/transformer.pth"
+  dim: 1024
+  depth: 2
+  heads: 4
+  mlp_dim: 2048
+  dim_head: 64
+  dropout: 0
+  max_num_person: 3
+  
