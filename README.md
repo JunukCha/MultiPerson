@@ -1,5 +1,5 @@
 [<img src="https://img.shields.io/badge/Pytorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white"/>](https://pytorch.org/)
-[<img src="https://img.shields.io/badge/arxiv-2210.1352-B31B1B"/>](https://arxiv.org/pdf/2210.13529.pdf)/)
+[<img src="https://img.shields.io/badge/arxiv-2210.1352-B31B1B"/>](https://arxiv.org/pdf/2210.13529.pdf)
 [<img src="https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/multi-person-3d-pose-and-shape-estimation-via/3d-human-pose-estimation-on-3dpw">](https://paperswithcode.com/sota/3d-human-pose-estimation-on-3dpw?p=multi-person-3d-pose-and-shape-estimation-via)
 
 # MultiPerson
