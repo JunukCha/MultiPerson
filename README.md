@@ -73,6 +73,11 @@ For Yolo, download [yolov4.pth](https://drive.google.com/open?id=1wv_LiFeCRYwtpk
 │       └── smpl_mean_params.npz
 ```
 
+In 'yolov4.pth', the key name 'neek' of the parameter should be changed to 'neck'.
+```
+python change_param_key.py
+```
+
 # Inference
 ```
 python demo.py --img demo_image/demo1.jpg
