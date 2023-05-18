@@ -1,5 +1,5 @@
-conda create -n MPIK python=3.7 -y
-conda activate MPIK
+conda create -n MultiPerson python=3.7 -y
+conda activate MultiPerson
 
 pip install torch==1.9.0 torchvision==0.10.0
 pip install -r requirements.txt
