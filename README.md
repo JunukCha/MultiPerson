@@ -82,3 +82,13 @@ python change_param_key.py
 ```
 python demo.py --img demo_image/demo1.jpg
 ```
+
+# Citation
+```
+@inproceedings{cha2022multi,
+  title={Multi-Person 3D Pose and Shape Estimation via Inverse Kinematics and Refinement},
+  author={Cha, Junuk and Saqlain, Muhammad and Kim, GeonU and Shin, Mingyu and Baek, Seungryul},
+  booktitle={ECCV},
+  year={2022},
+}
+```
