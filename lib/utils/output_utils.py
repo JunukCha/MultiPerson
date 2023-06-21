@@ -26,17 +26,15 @@ def process_output(smpl_layer, rot6d, betas, cam):
 
     return axis_angle, rot6d, betas, cam, verts, faces
 
-def save_mesh_obj(verts, faces, mesh_results_folder):
-    for person_id, vert in enumerate(verts):
+def save_mesh_obj(verts, faces, num_person, mesh_results_folder):
+    for person_id, vert in enumerate(verts[:num_person]):
         mesh = trimesh.Trimesh(vert, faces)
         mesh.export(osp.join(mesh_results_folder, f"mesh{person_id}.obj"))
 
-def save_mesh_rendering(renderer, verts, boxes, cam, orig_height, orig_width, mesh_results_folder):
+def save_mesh_rendering(renderer, verts, boxes, cam, orig_height, orig_width, num_person, mesh_results_folder):
     orig_img = np.ones((orig_height, orig_width, 3))*255
     render_img = None
     
-    num_person = len(boxes)
-
     cmap = plt.get_cmap('rainbow')
     colors = [cmap(i) for i in np.linspace(0, 1, num_person + 2)]
     colors = [(c[2], c[1], c[0]) for c in colors]
@@ -63,8 +61,7 @@ def save_mesh_rendering(renderer, verts, boxes, cam, orig_height, orig_width, me
             )
     cv2.imwrite(osp.join(mesh_results_folder, f"mesh.jpg"), render_img)
 
-def save_mesh_pkl(axis_angle, betas, cam, mesh_results_folder):
-    num_person = len(axis_angle)
+def save_mesh_pkl(axis_angle, betas, cam, num_person, mesh_results_folder):
     for person_id in range(num_person):
         data = {
             "thetas": axis_angle[person_id].detach().cpu().numpy(),

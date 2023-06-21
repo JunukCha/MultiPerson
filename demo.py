@@ -110,6 +110,7 @@ if __name__ == '__main__':
         axis_angle, rot6d, betas, cam, verts, faces \
             = process_output(smpl_layer, refined_rot6d, refined_betas, refined_cam)
     
-    save_mesh_obj(verts, faces, mesh_results_folder)
-    save_mesh_rendering(renderer, verts, refined_boxes, cam, orig_height, orig_width, mesh_results_folder)
-    save_mesh_pkl(axis_angle, betas, cam, mesh_results_folder)
+    num_person = refined_boxes.shape[0]
+    save_mesh_obj(verts, faces, num_person, mesh_results_folder)
+    save_mesh_rendering(renderer, verts, refined_boxes, cam, orig_height, orig_width, num_person, mesh_results_folder)
+    save_mesh_pkl(axis_angle, betas, cam, num_person, mesh_results_folder)
