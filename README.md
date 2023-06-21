@@ -1,6 +1,6 @@
 [<img src="https://img.shields.io/badge/Pytorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white"/>](https://pytorch.org/)
-[<img src="https://img.shields.io/badge/arxiv-2210.1352-B31B1B"/>]([https://pytorch.org](https://arxiv.org/pdf/2210.13529.pdf)/)
-<img src="https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/multi-person-3d-pose-and-shape-estimation-via/3d-human-pose-estimation-on-3dpw">
+[<img src="https://img.shields.io/badge/arxiv-2210.1352-B31B1B"/>](https://arxiv.org/pdf/2210.13529.pdf)
+[<img src="https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/multi-person-3d-pose-and-shape-estimation-via/3d-human-pose-estimation-on-3dpw">](https://paperswithcode.com/sota/3d-human-pose-estimation-on-3dpw?p=multi-person-3d-pose-and-shape-estimation-via)
 
 # MultiPerson
 Official code of **[Multi-Person 3D Pose and Shape Estimation via Inverse Kinematics and Refinement](https://arxiv.org/pdf/2210.13529.pdf)**
@@ -73,7 +73,22 @@ For Yolo, download [yolov4.pth](https://drive.google.com/open?id=1wv_LiFeCRYwtpk
 │       └── smpl_mean_params.npz
 ```
 
+In 'yolov4.pth', the key name 'neek' of the parameter should be changed to 'neck'.
+```
+python change_param_key.py
+```
+
 # Inference
 ```
 python demo.py --img demo_image/demo1.jpg
+```
+
+# Citation
+```
+@inproceedings{cha2022multi,
+  title={Multi-Person 3D Pose and Shape Estimation via Inverse Kinematics and Refinement},
+  author={Cha, Junuk and Saqlain, Muhammad and Kim, GeonU and Shin, Mingyu and Baek, Seungryul},
+  booktitle={ECCV},
+  year={2022},
+}
 ```
